@@ -31,5 +31,11 @@ app.listen(process.env.PORT, () => {
 });
 
 const authRoutes = require('./routes/auth-router');
+const adminRoutes = require('./routes/admin-router');
+const ownerRoutes = require('./routes/owner-router');
+
 
 app.use('/auth', authRoutes);
+app.use('/auth/admin', adminRoutes);
+app.use('/auth/owner', ownerRoutes);
+
