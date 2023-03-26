@@ -54,35 +54,3 @@ exports.signIn = (req, res) => {
         }
     });
 };
-// //user information creation
-// exports.userInfo = (req, res) => {
-//   try {
-//     const user = new User(req.body); // New user object will be created.
-//     user
-//       .save(user)
-//       .then((user) => {
-//         res.json({
-//           address: user.address,
-//           city: user.city,
-//           pincode: user.pincode,
-//           phone: user.phone,
-//           id: user._id,
-//         });
-//       })
-//       .catch((error) => {
-//         console.log('Here: ', error);
-//         if (error.code === 11000) {
-//           return res.status(400).json({
-//             error: 'Email id is already in use.',
-//           });
-//         }
-//         return res.status(400).json({
-//           error: 'Failed to create the user. Please try again.',
-//         });
-//       });
-//   } catch (error) {
-//     return res.status(400).json({
-//       error: 'Failed to create the user. Please try again.',
-//     });
-//   }
-// };

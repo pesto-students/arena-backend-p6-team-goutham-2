@@ -54,3 +54,33 @@ exports.signIn = (req, res) => {
         }
     });
 };
+
+exports.addCourt = (req, res) => {
+    try {
+        const owner = new Owner(req.body); 
+        // New owner object will be created.
+        owner
+            .save(owner)
+            .then((owner) => {
+                res.json({
+                    name: owner.name,
+                    email: owner.email,
+                    id: owner._id,
+                });
+            })
+            .catch((error) => {
+                if (error.code === 11000) {
+                    return res.status(400).json({
+                        error: 'Email id is already in use.',
+                    });
+                }
+                return res.status(400).json({
+                    error: 'Failed to create the owner.Please try again.',
+                });
+            });
+    } catch (error) {
+        return res.status(400).json({
+            error: 'Failed to create the user. Please try again.',
+        });
+    }
+};
