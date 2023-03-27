@@ -5,6 +5,7 @@ import authHandler from "./src/handler/authHandler.js";
 import userHandler from "./src/handler/userHandler.js";
 import categoryHandler from "./src/handler/categoryHandler.js";
 import subCategoryHandler from "./src/handler/subCategoryHandler.js";
+import productHandler from "./src/handler/productHandler.js";
 const app = Express();
 
 const appName = "Coolabee Backend";
@@ -58,6 +59,7 @@ app.use("/api/auth", authHandler);
 app.use("/api/user", userHandler);
 app.use("/api/category", categoryHandler);
 app.use("/api/subcategory", subCategoryHandler);
+app.use("/api/product", productHandler);
 
 //listen
 app.listen(port, () => {

@@ -1,7 +1,12 @@
-import SubSubCategory from "../model/SubSubCategory";
+import SubCategory from "../model/SubCategory.js";
 
 export const getSubCategoryById = async (_id) => {
 	const subcategory = await SubCategory.findOne({ _id });
+	return subcategory;
+};
+
+export const getSubCategoryByCondition = async (condition) => {
+	const subcategory = await SubCategory.findOne({ ...condition });
 	return subcategory;
 };
 
@@ -18,9 +23,9 @@ export const updateSubCategory = async (id, data) => {
 };
 
 export const deleteSubCategory = async (id, data) => {
-	const { id } = id;
-	const subcategory = await SubCategory.findByIdAndDelete(id);
-	return subcategory;
+	// let { id } = id;
+	let subcategorydata = await SubCategory.findByIdAndDelete(id);
+	return subcategorydata;
 };
 export const getSubCategoryList = async (id, data) => {
 	const subcategories = await SubCategory.find();
