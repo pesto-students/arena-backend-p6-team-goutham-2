@@ -1,13 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const { check } = require('express-validator');
-const { AddCourt, getCourts } = require('../controllers/court-controller');
+const { AddCourt, getCourts, AddTimeSlot, getCourt } = require('../controllers/court-controller');
 
 router.post('/addcourt', [
     check('courtName', 'Enter valid court name').isLength({
         min: 5
     }),
-    check('location', 'Enter valid court name').isLength({
+    check('location', 'Enter location').isLength({
+        min: 5
+    }),
+    check('address', 'Enter valid address').isLength({
         min: 5
     }),
     check('sports', 'Enter valid sport name').isLength({
@@ -16,11 +19,24 @@ router.post('/addcourt', [
     check('facility', 'Enter valid facility').isLength({
         min: 5
     }),
-    check('time', 'Enter valid time').isDate(),
-    check('price', 'Enter valid court name').isNumeric({
+    check('price', 'Enter price').isNumeric({
         min: 2
     }),
 ], AddCourt);
+router.post('/:court_id',
 
-router.route("/courts").get(getCourts);
+    [
+        check('slotFrom', 'From').isDate({
+            min: 5
+        }),
+        check('slotTo', 'To').isDate({
+            min: 5
+        }),
+
+    ]
+    , AddTimeSlot
+);
+router.route("/list").get(getCourts);
+router.route("/:court_id").get(getCourt);
+
 module.exports = router;

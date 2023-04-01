@@ -5,40 +5,45 @@ const schema = mongoose.Schema;
 
 const courtSchema = new schema(
   {
-    courtName: {
+    court_id: {
       type: String,
-      required: true,
       trim: true,
     },
-    time: {
-        type: Date,
-        default: Date.now,
-        required: true,
+    courtName: {
+      type: String,
       trim: true,
     },
     location: {
       type: String,
-      required: true,
+      trim: true,
+    },
+    address: {
+      type: String,
       trim: true,
     },
     sports:{
       type: String,
-      required: true,
       trim: true,
     },
     facility:{
       type: String,
-      required: true,
       trim: true,
     },
     price:{
       type: Number,
-      required: true,
       trim: true,
+    },
+    slotFrom:{
+      type: Date,
+      default: new Date()
+    },
+    slotTo:{
+      type: Date,
+      default: new Date()
     }
   },
   { timestamp: true }
 );
 
 
-module.exports = mongoose.model('court', courtSchema);
+module.exports = mongoose.model('courts', courtSchema);
