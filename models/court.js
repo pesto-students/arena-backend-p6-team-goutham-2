@@ -5,7 +5,11 @@ const schema = mongoose.Schema;
 
 const courtSchema = new schema(
   {
-    court_id: {
+    id: {
+      type: String,
+      trim: true,
+    },
+    owner_id: {
       type: String,
       trim: true,
     },
@@ -33,14 +37,14 @@ const courtSchema = new schema(
       type: Number,
       trim: true,
     },
-    slotFrom:{
-      type: Date,
-      default: new Date()
+    from:{
+      type: Number,
+      trim: true,
     },
-    slotTo:{
-      type: Date,
-      default: new Date()
-    }
+    to:{
+      type: Number,
+      trim: true,
+    },
   },
   { timestamp: true }
 );

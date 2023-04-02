@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const { check } = require('express-validator');
-const { AddCourt, getCourts, AddTimeSlot, getCourt } = require('../controllers/court-controller');
-
-router.post('/addcourt', [
+const { AddCourt, getCourts, AddTimeSlot, getCourt, getOwner, UpdateCourt } = require('../controllers/court-controller');
+//add court
+router.post('/addcourt/:owner_id', [
     check('courtName', 'Enter valid court name').isLength({
         min: 5
     }),
@@ -22,7 +22,15 @@ router.post('/addcourt', [
     check('price', 'Enter price').isNumeric({
         min: 2
     }),
+    check('owner_id', 'Invalid id').isHash({
+        min: 2
+    })
 ], AddCourt);
+//update court
+router.put('/updatecourt/:owner_id', [
+], UpdateCourt);
+
+//add slot
 router.post('/:court_id',
 
     [
@@ -36,7 +44,10 @@ router.post('/:court_id',
     ]
     , AddTimeSlot
 );
+//list all court
 router.route("/list").get(getCourts);
-router.route("/:court_id").get(getCourt);
+//list particular court
+router.route("/:owner_id").get(getCourt);
+// router.route("/:owner_id/:court_id").get(getOwner);
 
 module.exports = router;
