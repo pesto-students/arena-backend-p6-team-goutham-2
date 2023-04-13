@@ -4,11 +4,8 @@ const { check } = require("express-validator");
 const {
   AddCourt,
   getCourts,
-  AddTimeSlot,
   getCourt,
-  getOwner,
   UpdateCourt,
-  BookNow,
 } = require("../controllers/court-controller");
 //add court
 router.post(
@@ -42,7 +39,6 @@ router.post(
 //update court
 router.put("/updatecourt/:owner_id", [], UpdateCourt);
 
-router.post("/booknow/:user_id", [], BookNow);
 
 //list all court
 router.route("/list").get(getCourts);

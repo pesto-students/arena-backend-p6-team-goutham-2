@@ -46,28 +46,7 @@ exports.UpdateCourt = async (req, res) => {
     console.log(error, "err");
   }
 };
-//Book now
 
-exports.BookNow = async (req, res) => {
-  try {
-    const court = new Courts(req.body);
-    // New court object will be created.
-    court.save(court).then((court) => {
-      res.json({
-        courtName: court.courtName,
-        ownerId: court.owner_id,
-        location: court.location,
-        sports: court.sports,
-        price: court.price,
-        id: court._id,
-        facility: court.facility,
-        date: court.date,
-      });
-    });
-  } catch (error) {
-    console.log(error, "err");
-  }
-};
 
 exports.AddTimeSlot = async (req, res) => {
   try {

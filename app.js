@@ -33,8 +33,11 @@ const authRoutes = require("./routes/auth-router");
 const adminRoutes = require("./routes/admin-router");
 const ownerRoutes = require("./routes/owner-router");
 const courtRoutes = require("./routes/court-router");
+const paymentRoutes = require("./routes/payment-router");
 
 app.use("/auth", authRoutes);
 app.use("/auth/admin", adminRoutes);
 app.use("/auth/owner", ownerRoutes);
 app.use("/auth/court", courtRoutes);
+app.use("/auth/court", courtRoutes);
+app.use("/auth/payment", paymentRoutes);
