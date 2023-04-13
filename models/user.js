@@ -25,10 +25,6 @@ const userSchema = new schema(
       type: Number,
       default: 0,
     },
-    bookedCourts: {
-      type: Array,
-      default: [],
-    },
   },
   { timestamp: true }
 );

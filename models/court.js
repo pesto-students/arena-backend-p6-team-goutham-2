@@ -25,23 +25,27 @@ const courtSchema = new schema(
       type: String,
       trim: true,
     },
-    sports:{
+    sports: {
       type: String,
       trim: true,
     },
-    facility:{
+    facility: {
       type: String,
       trim: true,
     },
-    price:{
+    price: {
       type: Number,
       trim: true,
     },
-    from:{
+    from: {
       type: Number,
       trim: true,
     },
-    to:{
+    date: {
+      type: String,
+      trim: true,
+    },
+    to: {
       type: Number,
       trim: true,
     },

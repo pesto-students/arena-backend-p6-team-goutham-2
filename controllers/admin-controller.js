@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 //admin registration
 exports.adminSignup = (req, res) => {
     try {
-        const admin = new Admin(req.body); 
+        const admin = new Admin(req.body);
         // New admin object will be created.
         admin
             .save(admin)

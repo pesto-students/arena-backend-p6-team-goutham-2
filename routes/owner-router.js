@@ -25,8 +25,8 @@ check('password', 'Password should be at least 6 characters.').isLength({
 }),], signIn);
 
 router.post('/addcourt', [
-check('court', 'Enter valid court name').isLength({
-  min :5
-}),
-check('password', 'Password should be at least 6 characters.').isLength()], signIn);
+  check('court', 'Enter valid court name').isLength({
+    min: 5
+  }),
+  check('password', 'Password should be at least 6 characters.').isLength()], signIn);
 module.exports = router;

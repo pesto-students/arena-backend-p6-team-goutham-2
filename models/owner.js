@@ -1,6 +1,6 @@
-const { v4: uuidv4 } = require('uuid');
-const mongoose = require('mongoose');
-const crypto = require('crypto');
+const { v4: uuidv4 } = require("uuid");
+const mongoose = require("mongoose");
+const crypto = require("crypto");
 const schema = mongoose.Schema;
 
 const ownerSchema = new schema(
@@ -30,7 +30,7 @@ const ownerSchema = new schema(
 );
 
 ownerSchema
-  .virtual('password')
+  .virtual("password")
   .set(function (password) {
     this._password = password;
     this.salt = uuidv4();
@@ -46,16 +46,16 @@ ownerSchema.methods = {
   },
 
   securePassword: function (plainpassword) {
-    if (!plainpassword) return '';
+    if (!plainpassword) return "";
     try {
       return crypto
-        .createHmac('sha256', this.salt)
+        .createHmac("sha256", this.salt)
         .update(plainpassword)
-        .digest('hex');
+        .digest("hex");
     } catch (err) {
-      return '';
+      return "";
     }
   },
 };
 
-module.exports = mongoose.model('owner', ownerSchema);
+module.exports = mongoose.model("owner", ownerSchema);
