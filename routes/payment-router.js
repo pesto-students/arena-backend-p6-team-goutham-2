@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { PaymentDetails, getPaymentHistory } = require('../controllers/payment-controller');
+
 //storing payment details
 router.post('/paymentdata',
   [],
