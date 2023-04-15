@@ -41,5 +41,4 @@ app.use("/auth", authRoutes);
 app.use("/auth/admin", adminRoutes);
 app.use("/auth/owner", ownerRoutes);
 app.use("/auth/court", courtRoutes);
-app.use("/auth/court", courtRoutes);
 app.use("/auth/payment", paymentRoutes);
