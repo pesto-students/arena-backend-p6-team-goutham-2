@@ -1,6 +1,7 @@
 const user = require('../models/user');
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
+const request = require('request');
 const Courts = require('../models/court');
 exports.signup = (req, res) => {
   try {
@@ -65,7 +66,6 @@ exports.getUser = async (req, res) => {
 
 exports.Payment = async (req, res) => {
   try {
-    var request = require('request');
     const court = await Courts.find({ owner_id: req.body.owner_id });
     // res.json({ data: court, status: "success" });
     var options = {
