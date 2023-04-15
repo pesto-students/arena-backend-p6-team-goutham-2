@@ -81,6 +81,16 @@ exports.getCourt = async (req, res) => {
   }
 };
 
+exports.getCourtByLocation = async ({params:{location}}, res) => {
+  try {
+    const regex = new RegExp(location, "i");
+    const court = await Courts.find({ location: regex });
+    res.json({ data: court, status: "success" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 exports.getOwner = async (req, res) => {
   try {
     const Owner = await court.findById(req.params.owner_id);

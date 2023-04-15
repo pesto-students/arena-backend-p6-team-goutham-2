@@ -6,6 +6,7 @@ const {
   getCourts,
   getCourt,
   UpdateCourt,
+  getCourtByLocation,
 } = require("../controllers/court-controller");
 //add court
 router.post(
@@ -44,6 +45,9 @@ router.put("/updatecourt/:owner_id", [], UpdateCourt);
 router.route("/list").get(getCourts);
 //list particular court
 router.route("/:owner_id").get(getCourt);
-// router.route("/:owner_id/:court_id").get(getOwner);
+
+//search api based on location
+router.route("/location/:location").get(getCourtByLocation);
+
 
 module.exports = router;
