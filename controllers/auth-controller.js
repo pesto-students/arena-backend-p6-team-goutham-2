@@ -1,8 +1,8 @@
 const user = require('../models/user');
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
-const request = require('request');
 const Courts = require('../models/court');
+const { default: axios } = require('axios');
 exports.signup = (req, res) => {
   try {
     const user = new User(req.body); // New user object will be created.
@@ -69,28 +69,23 @@ exports.Payment = async (req, res) => {
     const court = await Courts.find({ owner_id: req.body.owner_id });
     // res.json({ data: court, status: "success" });
     var options = {
-      'method': 'POST',
-      'url': 'https://api.razorpay.com/v1/orders',
-      'headers': {
+      "amount": court[0]?.price * 100,
+      "currency": "INR",
+      "receipt": "Receipt no. 1",
+      "notes": {
+        "notes_key_1": "Court booking",
+        "notes_key_2": "Payment process"
+      }
+    };
+
+    const response = await axios.post('https://api.razorpay.com/v1/orders', options, {
+      headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Basic ' + Buffer.from(process.env.KEYID + ":" + process.env.KEYSECRET).toString('base64')
-      },
-      body: JSON.stringify({
-        "amount": court[0]?.price * 100,
-        "currency": "INR",
-        "receipt": "Receipt no. 1",
-        "notes": {
-          "notes_key_1": "Court booking",
-          "notes_key_2": "Payment process"
-        }
-      })
+      }
+    })
+    res.json({ data: response.data, status: "success" });
 
-    };
-    request(options, function (error, response) {
-      if (error) throw new Error(error);
-      console.log(response.body);
-      res.json({ data: JSON.parse(response.body), status: "success" });
-    });
 
   } catch (err) {
     res.status(500).json({ error: err.message });
